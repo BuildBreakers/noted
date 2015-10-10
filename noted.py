@@ -7,8 +7,8 @@ app = Flask(__name__)
 def home():
     template = render_template('index.html')
     if (request.method == 'POST'):
-        newNote = request.form['newNote']
-        return newNote['title']
+        newNote = request.form['title']
+        return newNote
     return template
 
 @app.route('/hello')
