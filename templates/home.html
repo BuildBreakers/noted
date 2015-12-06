@@ -23,6 +23,8 @@
             </div>
             <a href={{url_for('topic', topic_id = topic.id)}}>See notes for <b>{{topic.topic}}</b></a>
             <br>
+            <a href={{url_for('renameTopic', topic_id=topic.id)}}>Rename <b>{{topic.topic}}</b></a>
+            <br>
             <a href={{url_for('deleteTopic', topic_id = topic.id)}}>Delete <b>{{topic.topic}}</b></a>
             {% endfor %}
         </div>

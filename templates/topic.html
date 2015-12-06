@@ -27,6 +27,10 @@
                 Last Updated: {{note.lastUpdatedTime}}
                 <br>
                 {{note.message}}
+                <br>
+                <a href={{url_for('deleteNote', topic_id=topic.id, note_id=note.id)}}>Delete <b>{{note.title}}</b></a>
+                <br>
+                <a href={{url_for('editNote', topic_id=topic.id, note_id=note.id)}}>Edit <b>{{note.title}}</b></a>
             </div>
             {% endfor %}
         </div>
