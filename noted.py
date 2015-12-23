@@ -29,7 +29,7 @@ def topic(topic_id):
         newNote = Note(title = request.form['title'], message = request.form['message'], topic_id = topic_id)
         session.add(newNote)
         session.commit()
-    return render_template('topic.html', topic = topic, notes = notes)
+    return render_template('topic-page.html', topic=topic, notes=notes)
 
 @app.route('/topic/<int:topic_id>/delete/', methods=['GET', 'POST'])
 def deleteTopic(topic_id):

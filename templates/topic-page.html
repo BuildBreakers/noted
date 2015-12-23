@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block pageHeader %}
+Topic: {{topic.topic}}
+{% endblock %}
+
+{% block instructions %}
+Create new notes here!
+{% endblock %}
+
+{% block form %}
+<form class="form-inline" action={{url_for('topic', topic_id=topic.id)}} id="newNote" method="post">
+    <input type="text" placeholder="Title" name="title" maxlength="20"/>
+    <input type="text" placeholder="Message" name="message" maxlength="200"/>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
+
+{% block content %}
+<div id="notes">
+    {% for note in notes %}
+    <div class="note">
+        <b>
+            Note #{{note.id}}, {{note.title}}
+        </b>
+        <br>
+        Last Updated: {{note.lastUpdatedTime}}
+        <br>
+        {{note.message}}
+        <br>
+        <a href={{url_for('deleteNote', topic_id=topic.id, note_id=note.id)}}>Delete <b>{{note.title}}</b></a>
+        <br>
+        <a href={{url_for('editNote', topic_id=topic.id, note_id=note.id)}}>Edit <b>{{note.title}}</b></a>
+    </div>
+    {% endfor %}
+</div>
+<a href={{url_for('home')}}>Return to home page</a>
+{% endblock %}

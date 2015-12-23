@@ -1,32 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Noted</title>
-        <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <script src="/static/js/bootstrap.min.js"></script>
-    </head>
+{% extends "base.html" %}
 
-    <body>
-        <h1>Welcome to Noted!</h1>
-        <h4>Create new topics here!</h4>
-        <div class="container">
-            <form class="form-inline" action="/" id="newTopic" method="post">
-                <input type="text" placeholder="New Topic" name="newTopic" maxlength="20"/>
-                <input type="submit" value="Submit" >
-            </form>
-        </div>
-        <div id="topics">
-            {% for topic in topics %}
-            <div class="topic">
-                Topic #{{topic.id}}: {{topic.topic}}
-            </div>
-            <a href={{url_for('topic', topic_id = topic.id)}}>See notes for <b>{{topic.topic}}</b></a>
-            <br>
-            <a href={{url_for('renameTopic', topic_id=topic.id)}}>Rename <b>{{topic.topic}}</b></a>
-            <br>
-            <a href={{url_for('deleteTopic', topic_id = topic.id)}}>Delete <b>{{topic.topic}}</b></a>
-            {% endfor %}
-        </div>
-    </body>
-</html>
+{% block pageHeader %}
+Welcome to Noted!
+{% endblock %}
+
+{% block instructions %}
+Create new topics here!
+{% endblock %}
+
+{% block form %}
+<form class="form-inline" action="/" id="newTopic" method="post">
+    <input type="text" placeholder="New Topic" name="newTopic" maxlength="20"/>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
+
+{% block content %}
+<div id="topics">
+    {% for topic in topics %}
+    <div class="topic">
+        Topic #{{topic.id}}: {{topic.topic}}
+    </div>
+    <a href={{url_for('topic', topic_id=topic.id)}}>See notes for <b>{{topic.topic}}</b></a>
+    <br>
+    <a href={{url_for('renameTopic', topic_id=topic.id)}}>Rename <b>{{topic.topic}}</b></a>
+    <br>
+    <a href={{url_for('deleteTopic', topic_id=topic.id)}}>Delete <b>{{topic.topic}}</b></a>
+    {% endfor %}
+</div>
+{% endblock %}
